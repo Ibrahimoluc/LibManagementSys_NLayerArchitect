@@ -1,0 +1,26 @@
+﻿@model EntityLayer.Concrete.Alan
+
+
+@{
+    ViewBag.Title = "UpdateAlan";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+}
+
+<h3>Alan Güncelleme</h3>
+
+@using (Html.BeginForm("UpdateAlan", "Alan", FormMethod.Post))
+{
+    @Html.Label("AlanId")
+    <input tpye="number" name="AlanId" value="@ViewData["id"]" class="form-control" readonly>
+
+    <br />
+    @Html.Label("AlanName")
+    @*@Html.DropDownListFor(x => x.AlanId, (List<SelectListItem>) ViewBag.Alist, new { @class = "form-control" })*@
+
+    @Html.TextBoxFor(x => x.AlanName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.AlanName)
+    <br />
+    <button class="btn btn-secondary">güncelle</button>
+}
+

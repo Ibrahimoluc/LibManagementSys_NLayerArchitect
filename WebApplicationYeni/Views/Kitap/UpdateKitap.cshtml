@@ -1,0 +1,49 @@
+﻿@model EntityLayer.Concrete.Kitap
+
+
+@{
+    ViewBag.Title = "kitapGuncelle";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+
+    var date = Model.Yazar.YazarDTarih;
+    var formattedDate = $"{date:yyyy-MM-ddTHH:mm}";
+}
+
+
+
+<div class="container pt-4 mb-3">
+    <h3>Kitap Guncelle</h3>
+
+    <form action="UpdateKitap" method="post" enctype="multipart/form-data">
+        @Html.Label("Kitap Id")
+        <input name="KitapId" value="@Model.KitapId" class="form-control" readonly />
+
+        @Html.Label("Kitap Adı")
+        <input name="KitapName" type="text" value="@Model.KitapName" class="form-control" />
+
+        @Html.Label("Kitap Dosyası")
+        <input type="file" name="kitapDosya" class="form-control-file" />
+
+        @Html.Label("AlanId")
+        <input name="AlanId" value="@Model.AlanId" class="form-control" readonly />
+
+        @Html.Label("Alan Adı")
+        <p class="form-control">@Model.Alan.AlanName</p>
+
+        @Html.Label("YazarId")
+        <input name="YazarId" value="@Model.YazarId" class="form-control" />
+
+        @Html.Label("Yazar Adı")
+        <input type="text" name="Yazar.YazarName" value="@Model.Yazar.YazarName" class="form-control" />
+
+        @Html.Label("Yazar Doğum Tarihi")
+        <input type="datetime-local" name="Yazar.YazarDTarih" value="@formattedDate" class="form-control w-25" />
+
+        <button class="btn btn-outline-primary mt-3">Guncelle</button>
+    </form>
+</div>
+
+
+
+
+

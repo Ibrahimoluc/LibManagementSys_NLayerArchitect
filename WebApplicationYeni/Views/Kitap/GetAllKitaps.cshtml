@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewBag.Title = "GetAllKitaps";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+    //string userRole = (string)Session["Role"];
+    FormsAuthenticationTicket fat = FormsAuthentication.Decrypt(Request.Cookies.Get(".ASPXAUTH").Value);
+    string userRole = fat.UserData;
+
+    string color = "";
+}
+
+
+@using EntityLayer.Concrete
+@model List<Kitap>
+@*admin rol:@Session["Role"]
+username:@Session["AdminUserName"]*@
+
+<h3>Kitaplar</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>KitapId</th>
+        <th>KitapName</th>
+        <th>YazarId</th>
+        <th>YazarAdı</th>
+
+        <th>AlanId</th>
+        <th>Alan Adı</th>
+        <th>Yorumlar</th>
+        @if (userRole == "A")
+        {
+            <th>Status</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        }
+
+
+
+    </tr>
+    @*@Html.Label("Kitap Sayısı")
+    @Model.Count
+    @Session["AdminUserName"]
+    @Session["AlandanGelen"]*@
+
+
+    @foreach (Kitap k in @Model)
+    {
+        if (k.KitapStatus == false) { color = "red"; }
+        else { color = "green"; }
+        if (k.KitapStatus == true | (userRole == "A"))
+        {
+
+            <tr>
+                <td>@k.KitapId</td>
+                <td><a href="~/Kitap/getKitapDosyaById/@k.KitapId">@k.KitapName</a></td>
+                <td>@k.YazarId</td>
+                <td>@k.Yazar.YazarName</td>
+                <td>@k.AlanId</td>
+                <td>@k.Alan.AlanName</td>
+                <td><a href="~/Comment/getCommentsById/@k.KitapId" class="btn btn-warning">Yorumlar</a></td>
+
+
+                @if (userRole == "A")
+                {
+                    <td style="color:@color">@k.KitapStatus</td>
+                    <td><a href="Kitap/UpdateKitap?id=@k.KitapId" class="btn btn-info">Güncelle</a></td>
+                    <td><a href="Kitap/DeleteKitap/@k.KitapId" class="btn btn-danger">Sil</a></td>
+                }
+
+            </tr>
+        }
+
+
+
+    }
+
+</table>
+
+
+@*@foreach (Kitap k in @Model)
+    {
+        //string color = "";
+        //if (k.KitapStatus == false) { color = "red"; }
+        //else { color = "green"; }
+
+
+        <tr>
+            <td>@k.KitapId</td>
+            <td>@k.KitapName</td>
+            <td>@k.YazarId</td>
+            <td>@k.AlanId</td>
+            <td>@k.Alan.AlanName</td>
+            <td><a href="~/Comment/getCommentsById/@k.KitapId" class="btn btn-warning">Yorumlar</a></td>
+
+
+            @if (userRole == "A")
+            {
+                <td style="color:@color">@k.KitapStatus</td>
+                <td><a href="Kitap/UpdateKitap?id=@k.KitapId" class="btn btn-info">Güncelle</a></td>
+                <td><a href="Kitap/DeleteKitap/@k.KitapId" class="btn btn-danger">Sil</a></td>
+            }
+
+        </tr>
+    }*@
+

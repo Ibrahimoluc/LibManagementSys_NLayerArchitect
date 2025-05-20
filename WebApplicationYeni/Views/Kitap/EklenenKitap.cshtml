@@ -1,0 +1,29 @@
+﻿@using EntityLayer.Concrete
+@model Kitap
+@{
+    ViewBag.Title = "EklenenKitap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EklenenKitap</h2>
+<p>@ViewBag.Message</p>
+
+<table>
+    <tr>
+        
+        <th>KitapName</th>
+        <th>AlanId</th>
+        <th>YazarId</th>
+
+    </tr>
+    <tr>
+
+        <td>@Model.KitapName</td>
+        <td>@Model.AlanId</td>
+        @*<td>@Model.YazarId</td>
+        <td>@Model.Yazar.YazarName</td>
+        <td>@Model.Yazar.YazarDTarih</td>*@
+
+
+    </tr>
+</table>

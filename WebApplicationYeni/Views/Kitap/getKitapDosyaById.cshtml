@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "getKitapDosyaById";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+    string kitapYolu = (string)@ViewBag.kitapYolu;
+}
+
+<h3>Kitap Dosyası</h3>
+kitapYolu
+
+<iframe src="@kitapYolu" type="application/pdf" width="600" height="800" /></iframe>
+@*<iframe src="@ViewBag.kitapYolu" type="application/pdf" width="300" height="600" />*@
+
+

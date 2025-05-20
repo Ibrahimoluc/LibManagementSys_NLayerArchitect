@@ -1,0 +1,47 @@
+﻿@using EntityLayer.Concrete
+@model List<Yazar>
+
+
+@{
+    ViewBag.Title = "GetAllYazar";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+    //var userRole = (string)Session["Role"];
+    FormsAuthenticationTicket fat = FormsAuthentication.Decrypt(Request.Cookies.Get(".ASPXAUTH").Value);
+    string userRole = fat.UserData;
+}
+
+<h2>Yazarlar</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>YazarId</th>
+        <th>Yazar Adı</th>
+        <th>YazarDogumTarihi</th>
+        <th>Kitaplari</th>
+        @if ("A" == userRole)
+        {
+            <th>Güncelle</th>
+            <th>Sil</th>
+        }
+    </tr>
+    @Model.Count
+    
+    @foreach(Yazar y in @Model)
+            {
+                <tr>
+                    <td>@y.YazarId</td>
+                    <td>@y.YazarName</td>
+                    <td>@String.Format("{0:dd:MM:yyyy}", y.YazarDTarih)</td>
+                    <td><a href="~/Kitap/GetKitapsByYazarId?yazarId=@y.YazarId" class="btn btn-warning">Kitapları</a></td>
+                    @if ("A" == userRole)
+                    {
+                        <td><a href="UpdateYazar?id=@y.YazarId" class="btn btn-outline-info">Güncelle</a></td>
+                        <td><a href="~/Yazar/DeleteYazar?id=@y.YazarId" class="btn btn-danger">Sil</a></td>
+                    }
+
+                </tr>
+            }
+</table>
+
+
+

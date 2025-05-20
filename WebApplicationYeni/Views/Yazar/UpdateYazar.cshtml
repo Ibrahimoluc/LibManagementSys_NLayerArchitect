@@ -1,0 +1,34 @@
+﻿@using EntityLayer.Concrete
+@model Yazar
+
+@{
+    ViewBag.Title = "UpdateYazar";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+    var date = Model.YazarDTarih.Date;
+    var formattedDate = $"{date:yyyy-MM-ddTHH:mm}";
+}
+
+<h3>Yazar Güncelle</h3>
+
+<br />
+
+<form method="post" class="text-area">
+    <div class="mb-3">
+        <label class="form-label">Yazar Id</label>
+        <input type="text" value="@Model.YazarId" name="YazarId" readonly class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Yazar Adı</label>
+        <input type="text" name="YazarName" value="@Model.YazarName" class="form-control"/>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Yazar Doğum Tarihi</label>
+        <input type="datetime-local" name="YazarDTarih" value="@formattedDate" class="form-control w-25"    />
+    </div>
+    
+    <button class="btn btn-outline-primary">Güncelle</button>
+    <br />
+</form>
+

@@ -1,0 +1,30 @@
+﻿@using EntityLayer.Concrete
+@model Kitap
+
+@{
+    ViewBag.Title = "addComment";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+    int userId = (int)Session["UserId"];
+}
+
+<div class="container pt-4 mb-3">
+    <h3>Yorum Yap</h3>
+
+    <form action="~/Comment/addComment" method="post">
+
+        @Html.Label("Kitap Adı")
+        <p class="form-control">@Model.KitapName</p>
+
+        @Html.Label("Kitap Id")
+        <input type="number" name="KitapId" value="@Model.KitapId" class="form-control w-25" readonly/>
+
+        @Html.Label("Kullanıcı Id")
+        <input type="number" name="UserId" value="@userId" class="form-control w-25" readonly/>
+
+        @Html.Label("Yorum")
+        <input type="text" name="Content" class="form-control" />
+
+        <button class="btn btn-outline-primary mt-3">Ekle</button>
+    </form>
+</div>
+

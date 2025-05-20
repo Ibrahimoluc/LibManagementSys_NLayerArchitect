@@ -1,0 +1,69 @@
+﻿@using EntityLayer.Concrete
+@model List<Kitap>
+
+@{
+    ViewBag.Title = "GetAllKitaps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>GetAllKitaps</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>KitapId</th>
+        <th>KitapName</th>
+        <th>YazarId</th>
+        <th>AlanId</th>
+        <th>AlanName</th>
+        <th>Status</th>
+        <th>Guncelle</th>
+        <th>Sil</th>
+
+
+    </tr>
+    @Html.Label("Kitap Sayisi")
+    @Model.Count
+
+
+
+    @foreach (Kitap k in @Model)
+    {
+        string color = "";
+        if (k.KitapStatus == false) { color = "red"; }
+        else { color = "green"; }
+
+        <tr>
+            <td>@k.KitapId</td>
+            <td>@k.KitapName</td>
+            <td>@k.YazarId</td>
+            <td>@k.AlanId</td>
+            <td>@k.Alan.AlanName</td>
+            <td style="color:@color">@k.KitapStatus</td>
+            @* <td><a href="UpdateKitap?id=@k.KitapId" class="btn btn-info">guncelle</a></td>*@
+
+            <td><a class="btn btn-info" data-toggle="modal" data-target="#Modal1">guncelle</a></td>
+
+
+            <td><a href="DeleteKitap/@k.KitapId" class="btn btn-danger">sil</a></td>
+        </tr>
+    }
+
+</table>
+
+@*<button class="btn btn-info" data-bs-toggle="modal" data-target="#Modal1">popup</button>
+
+
+<div class="modal" id="Modal1">
+
+</div>*@
+
+@*@Html.Action("GetAllYazar", "Yazar")*@
+
+
+
+
+
+
+
+
+

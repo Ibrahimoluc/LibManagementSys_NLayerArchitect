@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="container pt-4">
+        <h2>Giriş Yap</h2>
+
+        <form method="post">
+            <label for="username" class="form-label">Kullanıcı Adı</label>
+            <input name="UserName" type="text" class="form-control" />
+
+
+            <label for="password" class="form-label">Şifre</label>
+            <input name="Password" type="text" class="form-control" />
+
+            <button type="submit" class="btn btn-outline-primary mt-4">Giriş Yap</button>
+        </form>
+    </div>
+
+</body>
+</html>

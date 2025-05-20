@@ -1,0 +1,60 @@
+﻿
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+    var userRole = (string)Session["Role"];
+    string color = "";
+}
+
+@using EntityLayer.Concrete
+@model List<Alan>
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>GetAllAlan</title>
+</head>
+<body>
+
+    <h3>Alanlar</h3>
+    @Html.Label("Alan sayısı")
+    @Model.Count
+    
+    <table class="table table-bordered">
+        <tr>
+            <th>AlanId</th>
+            <th>AlanName</th>
+            <th>Kitaplar</th>
+            @if ("A" == userRole)
+            {
+                <th>Sil</th>
+                <th>Güncelle</th>
+                <th>Kitap Ekle</th>
+            }
+
+
+        </tr>
+        @foreach (Alan a in Model)
+        {
+
+            <tr>
+                <td>@a.AlanId</td>
+                <td>@a.AlanName</td>
+                <td><a href="~/Alan/GetAlanById?id=@a.AlanId" class="btn btn-warning">Kitapları</a></td>
+                @if ("A" == userRole)
+                {
+                    <td><a href="DeleteAlan/@a.AlanId" class="btn btn-danger">sil</a></td>
+                    <td><a href="UpdateAlan?id=@a.AlanId" class="btn btn-outline-info">Güncelle</a></td>
+                    <td><a href="~/Kitap/KitapEkle?AlanId=@a.AlanId&AlanName=@a.AlanName" class="btn btn-outline-primary">KitapEkle</a></td>
+                }
+
+            </tr>
+        }
+    </table>
+
+</body>
+</html>

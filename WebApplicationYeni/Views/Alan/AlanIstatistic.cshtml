@@ -1,0 +1,40 @@
+﻿@using EntityLayer.Concrete
+@model List<Alan>
+
+@{
+    ViewBag.Title = "AlanIstatistic";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+}
+
+@*@ViewData["buyuk10"]*@
+<h3>Alan ile İlgili İstatistikler</h3>
+
+@foreach (string AlanName in ViewBag.AlanNames)
+{
+    <p>@AlanName</p>
+}
+
+@foreach (int AlanName in ViewBag.)
+{
+    <p>@AlanName</p>
+}
+
+<br />
+
+<table class="table table-bordered">
+    <tr>
+        <th>Toplam Alan Sayisi</th>
+        <td>@ViewData["toplam"]</td>
+    </tr>
+    <tr>
+        <th>En cok bulunan Alanin adi</th>
+        <td>@ViewData["maxName"]</td>
+        <th>En cok bulunan Alanin sayisi</th>
+        <td>@ViewData["max"]</td>
+    </tr>
+
+
+
+</table>
+
+

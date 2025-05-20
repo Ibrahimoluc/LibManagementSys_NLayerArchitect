@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete
+@model Alan
+
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AlanEkle</title>
+</head>
+<body>
+    <h3>Alan Ekleme</h3>
+    
+    <div>
+        @using (Html.BeginForm("AlanEkle", "Alan", FormMethod.Post))
+        {
+            <div class="form-group">
+                @Html.Label("Alan Adi")
+                @Html.TextBoxFor(x=>x.AlanName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.AlanName)
+                <br /> <br />
+                <button class="btn btn-secondary">Ekle</button>
+            </div>
+        }
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "YazarEkle";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+
+    var date = DateTime.Now;
+    var formattedDate = $"{date:yyyy-MM-ddTHH:mm}";
+
+}
+
+
+
+<div class="container pt-4">
+    <h3>Yazar Ekle</h3>
+
+    <form method="post">
+
+        @Html.Label("YazarAdı")
+        <input type="text" name="YazarName" class="form-control mb-3" />
+
+        @Html.Label("YazarDogumTarih")
+        <input type="datetime-local" name="YazarDTarih" class="form-control w-25 mb-3" value="@formattedDate"/>
+        <button class="btn btn-outline-primary">Ekle</button>
+    </form>
+</div>
+
+
+
+
+
+

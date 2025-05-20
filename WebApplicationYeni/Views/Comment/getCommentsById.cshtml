@@ -1,0 +1,50 @@
+﻿@using EntityLayer.Concrete
+@model List<Comment>
+
+@{
+    ViewBag.Title = "getCommentsById";
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+}
+
+<div class="container mb-2">
+    <h3 class="pt-2">Yorumlar</h3>
+
+
+    @if (Model.Count == 0)
+    {
+        <p>(@ViewBag.Id) numaralı kitaba daha yorum yapılmamıştır. İlk yapan sen ol</p>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <tr>
+                <th>Yorum</th>
+                <th>Kullanıcı Adı</th>
+                <th>Güncelleme Tarihi</th>
+            </tr>
+
+            @foreach (Comment c in @Model)
+            {
+                <tr>
+                    <td>@c.Content</td>
+                    <td>@c.User.UserName</td>
+                    <td>@c.UpdatedDate</td>
+                    <td>@c.KitapId</td>
+
+                </tr>
+            }
+        </table>
+    }
+
+    <a href="~/Comment/addComment/@ViewBag.Id" class="btn btn-outline-primary">Yorum Yap</a>
+    <a href="~/Kitap/GetAllKitaps" class="btn btn-outline-success">Kitaplar</a>
+
+
+</div>
+
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿@model EntityLayer.Concrete.Alan
+
+@{
+    Layout = "~/Views/Shared/_LayoutLeftBar.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GetAlanById</title>
+</head>
+
+<body>
+    @*gormek istediginiz alanin Id sini girin
+        <form method="get">
+            <input type="number" name="id">
+            <button>getir</button>
+        </form>*@
+    <div class="container pt-4">
+        <h3>@Model.AlanName</h3>
+
+        @if (Model == (null))
+        {
+            <p> Verdiginiz Id de bir alan bulunamadi </p>
+        }
+        else
+        {
+            <table class="table table-bordered">
+                <tr>
+                    <th>Kitap Id</th>
+                    <th>Kitap Adı</th>
+                    <th>Yazar Adı</th>
+                </tr>
+                @foreach (EntityLayer.Concrete.Kitap k in Model.Kitaps)
+                {
+                    <tr>
+                        <td>@k.KitapId</td>
+                        <td>@k.KitapName</td>
+                        <td>@k.Yazar.YazarName</td>
+                    </tr>
+                }
+            </table>
+
+        }
+    </div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+@*@using (Html.BeginForm("GetAlanById", "Alan", FormMethod.Post))
+    {
+        <div class="form-check">
+            @Html.Label("Id")
+            @Html.TextBoxFor(x => x.AlanName)
+            <br />
+            <button>getir</button>
+        </div>
+    }*@
